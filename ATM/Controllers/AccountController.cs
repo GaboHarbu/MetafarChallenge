@@ -4,6 +4,7 @@
     using MediatR;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
+    using System.ComponentModel.DataAnnotations;
 
     [Authorize]
     [Route("api/account")]
@@ -18,7 +19,7 @@
         }
 
         [HttpGet("cardNumber")]
-        public async Task<IActionResult> GetBalance(string cardNumber)
+        public async Task<IActionResult> GetBalance([Required] string cardNumber)
         {
             var request = new GetAccountRequest { CardNumber = cardNumber };
             var response = await _mediator.Send(request);

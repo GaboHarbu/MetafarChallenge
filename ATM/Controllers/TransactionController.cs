@@ -4,6 +4,7 @@
     using MediatR;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
+    using System.ComponentModel.DataAnnotations;
 
     [Route("api/transactions")]
     [ApiController]
@@ -18,7 +19,7 @@
 
         [Authorize]
         [HttpGet("cardNumber")]
-        public async Task<IActionResult> GetTransactions(string cardNumber)
+        public async Task<IActionResult> GetTransactions([Required] string cardNumber)
         {
             var request = new GetTransactionsRequest { CardNumber = cardNumber };
             var response = await _mediator.Send(request);

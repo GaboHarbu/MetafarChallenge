@@ -4,6 +4,7 @@
     using MediatR;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
+    using System.ComponentModel.DataAnnotations;
 
     [Authorize]
     [Route("api/card")]
@@ -18,7 +19,7 @@
         }
 
         [HttpPost("withdraw")]
-        public async Task<IActionResult> Withdraw(string cardNumber, float amount)
+        public async Task<IActionResult> Withdraw([Required] string cardNumber, [Required] float amount)
         {
             var request = new WithdrawMoneyRequest { CardNumber = cardNumber, Amount = amount };
             var response = await _mediator.Send(request);

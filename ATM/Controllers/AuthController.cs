@@ -4,6 +4,7 @@
     using Core.Features.Auth.Login;
     using MediatR;
     using Microsoft.AspNetCore.Mvc;
+    using System.ComponentModel.DataAnnotations;
 
     [Route("api/controller")]
     [ApiController]
@@ -17,7 +18,7 @@
         }
 
         [HttpGet("login")]
-        public IActionResult Login(string cardNumber, int pin)
+        public IActionResult Login([Required] string cardNumber, [Required] int pin)
         {
             var request = new LoginRequest
             {
